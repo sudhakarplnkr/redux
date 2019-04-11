@@ -1,9 +1,11 @@
+import { TransportBoardingType, TransportBoardingTypeModel } from '../models/event/transportBoardingType';
 import { User, UserModel } from '../models/user';
 import UserService from '../services/userService';
 
 class SeedService {
     public seed() {
         this.user();
+        this.TransportBoardingType();
     }
 
     private user(): void {
@@ -23,6 +25,19 @@ class SeedService {
                         console.log(response);
                     }
                 );
+            }
+        });
+    }
+
+    private TransportBoardingType(): void {
+        const boardingTypes: TransportBoardingType[] = [];
+        boardingTypes.push({ TransportBoardingType: 'Fixed' } as TransportBoardingType);
+        boardingTypes.push({ TransportBoardingType: 'Floating' } as TransportBoardingType);
+        boardingTypes.push({ TransportBoardingType: 'No Transport' } as TransportBoardingType);
+
+        TransportBoardingTypeModel.countDocuments({}, (totalCount: number) => {
+            if (totalCount === null) {
+                TransportBoardingTypeModel.insertMany(boardingTypes);
             }
         });
     }

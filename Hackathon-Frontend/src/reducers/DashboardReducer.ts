@@ -1,11 +1,15 @@
 import { UPDATE_DASHBOARD } from '../constants/Actions';
-const initialState = {} as any;
+import { IDashboardProps } from '../models/Dashboard';
+const initialState = {
+    registeredAssociate: []
+} as IDashboardProps;
+
 const DashboardReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case UPDATE_DASHBOARD:
+        case UPDATE_DASHBOARD:            
             return {
                 ...state,
-                dashboard: action.payload
+                ...action.payload
             };
         default:
             return state;

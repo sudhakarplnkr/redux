@@ -1,39 +1,61 @@
-import * as request from 'request';
 import * as supertest from 'supertest';
-import { config } from '../../src/config/config';
+import { Associate } from '../../src/models/associate';
 import * as server from '../../src/server';
+import associateService from '../../src/services/associateService';
+import { associate, loginForToken } from '../testHelper';
+const app = supertest(server);
 
-describe('routes test', () => {
+describe('associate controller tests', () => {
     const user = { token: undefined };
     beforeAll((done: any) => {
-        request.post(
-            {
-                body: JSON.stringify({ username: 'sudhakar', password: 'password' }),
-                headers: { 'content-type': 'application/json' },
-                url: `http://localhost:${config.port}/login`
-            },
-            (error, response) => {
-                if (!error) {
-                    const data = JSON.parse(response.body);
-                    user.token = data.token;
-                }
-                done();
-            }
-        );
+        loginForToken((loginResponse: any) => {
+            user.token = loginResponse.body.token;
+            associate.EventId = '5cac846a6b84c337b9ac554e';
+
+            // Act
+            app.post('/api/associate')
+                .send(associate)
+                .set('Accept', 'application/json')
+                .set('access-token', user.token)
+                .then((result: any) => {
+                    // Assert
+                    expect(result.status).toBe(200);
+                    done();
+                });
+        });
     });
-    
+
     it('get all associate fails without token', (done: any) => {
-        const app = supertest(server);
         app.get('/api/associate')
             .set('Accept', 'application/json')
             .expect(403, done);
     });
 
     it('get all associate', (done: any) => {
-        const app = supertest(server);
         app.get('/api/associate')
             .set('Accept', 'application/json')
             .set('access-token', user.token)
-            .expect(200, done);
+            .expect(200)
+            .then((response: any) => {
+                expect(response.body.length).toBeGreaterThanOrEqual(1);
+                done();
+            });
+    });
+
+    it('update associate', (done: any) => {
+        app.get('/api/associate')
+            .set('Accept', 'application/json')
+            .set('access-token', user.token)
+            .expect(200)
+            .then((response: any) => {
+                app.put(`/api/associate/${response.body[0]._id}`)
+                    .set('Accept', 'application/json')
+                    .set('access-token', user.token)
+                    .send(response.body[0])
+                    .then((result: any) => {
+                        expect(result.body.message).toBe('Successfully updated associate!');
+                        done();
+                    });
+            });
     });
 });

@@ -1,5 +1,15 @@
 import { API, UPDATE_EVENT } from '../constants/Actions';
 import { Http } from '../constants/enum';
+import { IEvent } from '../models/Event';
+
+export const updateEvents = (events: IEvent[]) => {
+    return (dispatch: any) => {
+        dispatch({
+            type: UPDATE_EVENT,
+            payload: { events: events }
+        });
+    };
+};
 
 export const getEvents = (isMyEvents?: boolean) => {
     return (dispatch: any) => {
@@ -9,10 +19,7 @@ export const getEvents = (isMyEvents?: boolean) => {
                 url: isMyEvents ? 'my-event' : 'event',
                 method: Http.Get,
                 onSuccess: (response: any) => {
-                    dispatch({
-                        type: UPDATE_EVENT,
-                        payload: { events: response }
-                    });
+                    dispatch(updateEvents(response));
                 }
             }
         });

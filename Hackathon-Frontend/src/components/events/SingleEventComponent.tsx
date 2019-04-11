@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ISingleEventProps } from '../../models/SingleEvent';
 import { Link } from 'react-router-dom';
+import * as dateFormat from 'dateformat';
 
 const SingleEventComponent = (props: ISingleEventProps) => {
     const onNumberChange = (value: string) => {
@@ -26,7 +27,7 @@ const SingleEventComponent = (props: ISingleEventProps) => {
 
     return (
         <div className="container">
-            <form className="form-horizontal" onSubmit={event => event.preventDefault()}>
+            <form className="form-horizontal" onSubmit={() => props.submitEvent()}>
                 <h2>
                     <small>Create Registration</small>
                 </h2>
@@ -96,7 +97,7 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         Date
                     </label>
                     <div className="col-md-5">
-                        <input type="date" className="form-control" onChange={event => onDateChange(event.target.value)} id="date" placeholder="Date" required={true} />
+                        <input type="date" className="form-control" onChange={event => onDateChange(event.target.value)} id="date" placeholder="Date" min={dateFormat(new Date(), 'isoDate')} required={true} />
                     </div>
                 </div>
                 <div className="form-group">
@@ -174,7 +175,7 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         </Link>
                     </div>
                     <div className="col-md-6">
-                        <button id="submit" onClick={() => props.submitEvent()} value="Create" className="btn btn-primary">
+                        <button type="submit" id="submit" value="Create" className="btn btn-primary">
                             Create{' '}
                         </button>
                     </div>

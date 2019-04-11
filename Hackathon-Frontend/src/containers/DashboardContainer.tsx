@@ -1,26 +1,29 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadDashboard } from '../actions/DashboardActions';
+import { loadRegisteredAssociate } from '../actions/DashboardActions';
 import DashboardComponent from '../components/DashboardComponent';
+import { IDashboardProps, IDashboardActionProps } from '../models/Dashboard';
 
-class DashboardContainer extends React.Component<{}, {}> {
+class DashboardContainer extends React.Component<IDashboardProps & IDashboardActionProps> {
+    public componentDidMount() {
+        this.props.loadRegisteredAssociate();
+    }
+
     public render() {
-        return (
-            <DashboardComponent />
-        );
+        return <DashboardComponent registeredAssociate={this.props.registeredAssociate} />;
     }
 }
-const mapStateToProps = (state: any) => {
+const mapStateToProps = ({ dashboard }: { dashboard: IDashboardProps }) => {    
     return {
-        dashboard: state.data.dashboard
+        registeredAssociate: dashboard.registeredAssociate
     };
 };
 
 const mapDispatchToProps = (dispatch: any) =>
     bindActionCreators(
         {
-            loadDashboard
+            loadRegisteredAssociate: () => loadRegisteredAssociate()
         },
         dispatch
     );

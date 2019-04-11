@@ -17,7 +17,6 @@ export class AssociateRoutes {
     application
       .route('/associate/:associateId')
       .get(this.associateController.get)
-      .put(this.associateController.update)
-      .delete(this.associateController.delete);
+      .put(this.associateController.update);
   }
 }

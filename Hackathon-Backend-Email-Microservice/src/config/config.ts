@@ -1,8 +1,8 @@
 export const config = {
     mailSetting: {
         auth: {
-            pass: 'Micky@1987',
-            user: 'sssudhakar1985@gmail.com'
+            pass: 'fsetest@123',
+            user: 'sudhakarfse@gmail.com'
         },
         emailBody: `<table style="width: 487.5pt;" width="0">
         <tbody>  

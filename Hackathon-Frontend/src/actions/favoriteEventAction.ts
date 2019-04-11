@@ -1,6 +1,6 @@
 import { API, UPDATE_FAVORITE_EVENT, API_TRANSACTION } from '../constants/Actions';
 import { Http } from '../constants/enum';
-import { IEvent } from 'src/models/Event';
+import { IEvent } from '../models/Event';
 
 export const getFavoriteEvent = () => {
     return (dispatch: any) => {
@@ -56,6 +56,15 @@ export const updateFavoriteEvent = (event: IEvent) => {
         dispatch({
             type: UPDATE_FAVORITE_EVENT,
             payload: { event: event }
+        });
+    };
+};
+
+export const updateFavoriteEvents = (events: IEvent[]) => {
+    return (dispatch: any) => {
+        dispatch({
+            type: UPDATE_FAVORITE_EVENT,
+            payload: { events: events }
         });
     };
 };

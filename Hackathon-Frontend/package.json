@@ -7,12 +7,14 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "set CI=true && node scripts/test.js --env=jsdom --coverage",
+    "test:dev": "node scripts/test.js --env=jsdom",
     "e2e": "tsc --module commonjs --outDir ./src/e2e/js && protractor protractor.config.js"
   },
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
     "@types/axios": "^0.14.0",
+    "@types/dateformat": "^3.0.0",
     "@types/jquery": "^3.3.22",
     "@types/jss": "^9.5.7",
     "@types/moment": "^2.13.0",
@@ -43,6 +45,7 @@
     "chalk": "2.4.1",
     "connected-react-router": "^4.5.0",
     "css-loader": "1.0.0",
+    "dateformat": "^3.0.3",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "5.6.0",
@@ -151,7 +154,7 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!**/*.d.ts",
       "!**/*.spec.{ts,tsx}",
-      "!**/e2e/**"      
+      "!**/e2e/**"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
@@ -179,7 +182,7 @@
     },
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "C:\\Sudhakar\\fse-dev\\Hackathon-Frontend\\tsconfig.test.json"
+        "tsConfigFile": "tsconfig.test.json"
       }
     },
     "moduleFileExtensions": [

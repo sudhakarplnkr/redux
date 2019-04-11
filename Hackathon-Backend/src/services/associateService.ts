@@ -17,7 +17,7 @@ class AssociateService {
 
     public bulkAdd(eventId: string, associates: Associate[], callback: any): void {
         const promise = associates.map((associate: Associate) =>
-            AssociateModel.findOne({ AssociateId: associate.AssociateId }).then((response: Associate) => {
+            AssociateModel.findOne({ AssociateId: associate.AssociateId, EventId: eventId }).then((response: Associate) => {
                 return new Promise((resolve: any) => {
                     if (!response) {
                         associate.EventId = eventId;
@@ -42,7 +42,7 @@ class AssociateService {
     }
 
     public update(associateId: string, associate: Associate, callback: any): void {
-        AssociateModel.findByIdAndUpdate(associateId, associate).then(callback);
+        AssociateModel.findOneAndUpdate(associateId, associate).then(callback);
     }
 
     public delete(associateId: string, callback: any): void {

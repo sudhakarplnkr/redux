@@ -6,6 +6,7 @@ export class Associate extends Typegoose {
     return !!associate.AssociateId && !!associate.EventId;
   }
 
+  public _id: string;
   @prop({ required: true })
   public AssociateId: number;
   @prop({ required: true })

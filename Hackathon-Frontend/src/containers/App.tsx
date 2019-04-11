@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { onLogout } from '../actions/AppActions';
 import Header from '../components/HeaderComponent';
@@ -45,7 +45,7 @@ class AppComponent extends React.Component<IAppProps, {}> {
         return (
             <React.Fragment>
                 <Header />
-                <Router>
+                <HashRouter>
                     <React.Fragment>
                         <LinksComponent links={menuLinks} isAuthenticated={this.props.isAuthenticated} role={this.props.role} />
                         <PrivateRoute path="/" exact={true} component={Dashboard} />
@@ -67,7 +67,7 @@ class AppComponent extends React.Component<IAppProps, {}> {
                         <PrivateRoute path="/post-event-update-detail/:eventId" component={PostEventUpdateDetailsContainer} />
                         <Route path="/access-denied" component={AccessDeniedComponent} />
                     </React.Fragment>
-                </Router>
+                </HashRouter>
                 {/* <Footer /> */}
             </React.Fragment>
         );

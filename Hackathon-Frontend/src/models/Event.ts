@@ -2,6 +2,7 @@ import { FileParameter } from '../utils/FileManagementClient';
 
 export interface IUpcomingEventsContainerProps {
     loadEvents: (isMyEvents?: boolean) => void;
+    updateEvents: (events: IEvent[]) => void;
     addFavoriteEvent: (eventId: string) => void;
     removeFavoriteEvent: (eventId: string) => void;
     eventModel: IEventModel;

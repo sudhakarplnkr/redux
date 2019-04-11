@@ -1,6 +1,6 @@
 import { reducer as toastrReducer } from 'react-redux-toastr';
 import { combineReducers } from 'redux';
-import dashboard from './DashboardReducer';
+import DashboardReducer from './DashboardReducer';
 import LoginReducer from './LoginReducer';
 import ReportReducer from './ReportReducer';
 import BulkRegistrtionReducer from './BulkRegistrtionReducer';
@@ -14,7 +14,7 @@ import ConfigurationReducer from './ConfigurationReducer';
 import BulkEventReducer from './BulkEventReducer';
 
 export default combineReducers({
-  data: dashboard,
+  dashboard: DashboardReducer,
   login: LoginReducer,
   reportReducer: ReportReducer,
   bulkRegistration: BulkRegistrtionReducer,

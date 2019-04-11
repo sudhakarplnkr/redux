@@ -1,5 +1,4 @@
 import * as Request from 'request';
-import { config } from '../config/config';
 import { EventModel } from '../models/event/event';
 import { IMail } from '../models/mail';
 import { numberToTime } from '../utils/DateTime';
@@ -13,7 +12,7 @@ export async function sendMail(to: number, eventId: string) {
             {
                 body: JSON.stringify(mailModel),
                 headers: { 'content-type': 'application/json' },
-                url: config.mailMicroserviceUrl
+                url: process.env.MAIL_MICROSERVICE_URL
             },
             (error: any, response: any) => (error ? resolve(error) : resolve(response))
         );

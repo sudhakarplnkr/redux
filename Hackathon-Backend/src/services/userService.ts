@@ -22,16 +22,16 @@ class UserService {
   }
 
   public delete(userId: string, callback: any): void {
-    UserModel.findOneAndDelete(userId).then(callback);
+    UserModel.findByIdAndDelete(userId).then(callback);
   }
 
   private addUser(user: User, callback: any) {
     UserModel.findOne({ Username: user.Username }).then(
       (availableUser: User) => {
         if (!availableUser) {
-          UserModel.create(user).then(() => {
+          UserModel.create(user, (_error: any, newUser: User) => {
             if (callback) {
-              callback();
+              callback(newUser);
             }
           });
           return;

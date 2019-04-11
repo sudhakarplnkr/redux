@@ -1,0 +1,202 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.29.
+3">
+      <projectUrl>http://172.18.2.18/sudhakar/Hackathon-Frontend.git/</projectUr
+l>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty plugin="gi
+tlab-plugin@1.5.11">
+      <gitLabConnection></gitLabConnection>
+    </com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty>
+    <job-metadata plugin="metadata@1.1.0b">
+      <values class="linked-list">
+        <metadata-tree>
+          <name>job-info</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>true</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-tree>
+              <name>last-saved</name>
+              <description></description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>true</generated>
+              <exposedToEnvironment>false</exposedToEnvironment>
+              <children class="linked-list">
+                <metadata-date>
+                  <name>time</name>
+                  <description></description>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <value>
+                    <time>1554705011958</time>
+                    <timezone>Asia/Calcutta</timezone>
+                  </value>
+                  <checked>false</checked>
+                </metadata-date>
+                <metadata-tree>
+                  <name>user</name>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <children class="linked-list">
+                    <metadata-string>
+                      <name>display-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>unknown</value>
+                    </metadata-string>
+                    <metadata-string>
+                      <name>full-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>unknown</value>
+                    </metadata-string>
+                  </children>
+                </metadata-tree>
+              </children>
+            </metadata-tree>
+          </children>
+        </metadata-tree>
+      </values>
+    </job-metadata>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.3">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>http://172.18.2.18/sudhakar/Hackathon-Frontend.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+
+    <browser class="hudson.plugins.git.browser.GitLab">
+      <url></url>
+      <version>1.0</version>
+    </browser>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <com.dabsquared.gitlabjenkins.GitLabPushTrigger plugin="gitlab-plugin@1.5.11
+">
+      <spec></spec>
+      <triggerOnPush>true</triggerOnPush>
+      <triggerOnMergeRequest>true</triggerOnMergeRequest>
+      <triggerOnPipelineEvent>false</triggerOnPipelineEvent>
+      <triggerOnAcceptedMergeRequest>false</triggerOnAcceptedMergeRequest>
+      <triggerOnClosedMergeRequest>false</triggerOnClosedMergeRequest>
+      <triggerOnApprovedMergeRequest>true</triggerOnApprovedMergeRequest>
+      <triggerOpenMergeRequestOnPush>never</triggerOpenMergeRequestOnPush>
+      <triggerOnNoteRequest>true</triggerOnNoteRequest>
+      <noteRegex>Jenkins please retry a build</noteRegex>
+      <ciSkip>true</ciSkip>
+      <skipWorkInProgressMergeRequest>true</skipWorkInProgressMergeRequest>
+      <setBuildDescription>true</setBuildDescription>
+      <branchFilterType>All</branchFilterType>
+      <includeBranchesSpec></includeBranchesSpec>
+      <excludeBranchesSpec></excludeBranchesSpec>
+      <sourceBranchRegex></sourceBranchRegex>
+      <targetBranchRegex></targetBranchRegex>
+      <secretToken>{AQAAABAAAAAQw2nhBLuHxZYZIleNc8sfdEb8i8x9j8DtE/M7zFQ8tpg=}</s
+ecretToken>
+      <pendingBuildName></pendingBuildName>
+      <cancelPendingBuildsOnUpdate>false</cancelPendingBuildsOnUpdate>
+    </com.dabsquared.gitlabjenkins.GitLabPushTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>npm install &amp;&amp; npm run build &amp;&amp; npm run test</com
+mand>
+    </hudson.tasks.BatchFile>
+    <jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin plugin="publish-over
+-ssh@1.20.1">
+      <delegate>
+        <consolePrefix>SSH: </consolePrefix>
+        <delegate plugin="publish-over@0.22">
+          <publishers>
+            <jenkins.plugins.publish__over__ssh.BapSshPublisher plugin="publish-
+over-ssh@1.20.1">
+              <configName>Ec2Linux</configName>
+              <verbose>false</verbose>
+              <transfers>
+                <jenkins.plugins.publish__over__ssh.BapSshTransfer>
+                  <remoteDirectory>//opt//docker//frontend</remoteDirectory>
+                  <sourceFiles>Dockerfile</sourceFiles>
+                  <excludes></excludes>
+                  <removePrefix></removePrefix>
+                  <remoteDirectorySDF>false</remoteDirectorySDF>
+                  <flatten>false</flatten>
+                  <cleanRemote>false</cleanRemote>
+                  <noDefaultExcludes>false</noDefaultExcludes>
+                  <makeEmptyDirs>false</makeEmptyDirs>
+                  <patternSeparator>[, ]+</patternSeparator>
+                  <execCommand></execCommand>
+                  <execTimeout>120000</execTimeout>
+                  <usePty>false</usePty>
+                  <useAgentForwarding>false</useAgentForwarding>
+                </jenkins.plugins.publish__over__ssh.BapSshTransfer>
+                <jenkins.plugins.publish__over__ssh.BapSshTransfer>
+                  <remoteDirectory>//opt//docker//frontend</remoteDirectory>
+                  <sourceFiles>build/**</sourceFiles>
+                  <excludes></excludes>
+                  <removePrefix></removePrefix>
+                  <remoteDirectorySDF>false</remoteDirectorySDF>
+                  <flatten>false</flatten>
+                  <cleanRemote>false</cleanRemote>
+                  <noDefaultExcludes>false</noDefaultExcludes>
+                  <makeEmptyDirs>false</makeEmptyDirs>
+                  <patternSeparator>[, ]+</patternSeparator>
+                  <execCommand></execCommand>
+                  <execTimeout>120000</execTimeout>
+                  <usePty>false</usePty>
+                  <useAgentForwarding>false</useAgentForwarding>
+                </jenkins.plugins.publish__over__ssh.BapSshTransfer>
+              </transfers>
+              <useWorkspaceInPromotion>false</useWorkspaceInPromotion>
+              <usePromotionTimestamp>false</usePromotionTimestamp>
+            </jenkins.plugins.publish__over__ssh.BapSshPublisher>
+          </publishers>
+          <continueOnError>false</continueOnError>
+          <failOnError>false</failOnError>
+          <alwaysPublishFromMaster>false</alwaysPublishFromMaster>
+          <hostConfigurationAccess class="jenkins.plugins.publish_over_ssh.BapSs
+hPublisherPlugin" reference="../.."/>
+        </delegate>
+      </delegate>
+    </jenkins.plugins.publish__over__ssh.BapSshBuilderPlugin>
+  </builders>
+  <publishers>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>Frontend_Deployment</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
+</project>

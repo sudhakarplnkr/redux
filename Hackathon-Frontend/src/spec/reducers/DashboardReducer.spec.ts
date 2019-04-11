@@ -5,10 +5,10 @@ describe('DashboardReducer reducer', () => {
     it('initial state', () => {
         // Arrange
         // Act
-        const state = DashboardReducer({}, {});
+        const state = DashboardReducer({ registeredAssociate: [] }, {});
 
         // Assert
-        expect(state).toEqual({});
+        expect(state).toEqual({ registeredAssociate: [] });
     });
 
     it('update state', () => {
@@ -16,11 +16,11 @@ describe('DashboardReducer reducer', () => {
 
         const model = [{ FirstName: 'test', LastName: 'test' }];
 
-        const action = { type: UPDATE_DASHBOARD, payload: model };
+        const action = { type: UPDATE_DASHBOARD, payload: { registeredAssociate: model } };
         // Act
-        const state = DashboardReducer({}, action);
+        const state = DashboardReducer({ registeredAssociate: [] }, action);
 
         // Assert
-        expect(state.dashboard).toEqual(model);
+        expect(state.registeredAssociate).toEqual(model);
     });
 });

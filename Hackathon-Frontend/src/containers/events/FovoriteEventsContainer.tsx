@@ -2,12 +2,13 @@ import * as React from 'react';
 import FovoriteEventsComponent from '../../components/events/FavoriteEventsComponent';
 import { bindActionCreators } from 'redux';
 import { IEventModel, IEvent } from '../../models/Event';
-import { getFavoriteEvent, removeFavoriteEvent, updateFavoriteEvent } from '../../actions/favoriteEventAction';
+import { getFavoriteEvent, removeFavoriteEvent, updateFavoriteEvent, updateFavoriteEvents } from '../../actions/favoriteEventAction';
 import { connect } from 'react-redux';
 import { IFavoriteEventContainerProps } from '../../models/FavoriteEvent';
 
 class FovoriteEventsContainer extends React.Component<IFavoriteEventContainerProps, {}> {
     public componentWillMount() {
+        this.props.updateFavoriteEvents([]);
         this.props.loadFavoriteEvent();
     }
 
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch: any) =>
         {
             loadFavoriteEvent: () => getFavoriteEvent(),
             onRemoveFavorite: (eventId: string) => removeFavoriteEvent(getFavoriteEvent, eventId),
-            onSelectFavorite: (event: IEvent) => updateFavoriteEvent(event)
+            onSelectFavorite: (event: IEvent) => updateFavoriteEvent(event),
+            updateFavoriteEvents: (events: IEvent[]) => updateFavoriteEvents(events)
         },
         dispatch
     );

@@ -3,12 +3,15 @@ import * as jwt from 'jsonwebtoken';
 import { config } from './config';
 
 export function verifyToken(request: Request, response: Response, next: NextFunction) {
+    if (request.method === 'OPTIONS') {
+        next();
+        return;
+    }
     const token = request.headers['access-token'];
     if (!token) {
-        response.status(request.method === 'OPTIONS' ? 200 : 403).send({
+        return response.status(403).send({
             message: 'No token provided.'
         });
-        return;
     }
     jwt.verify(token.toString(), config.secret, (error: any) => {
         if (error) {

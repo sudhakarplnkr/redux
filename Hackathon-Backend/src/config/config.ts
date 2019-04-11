@@ -1,5 +1,4 @@
-export const config = {
-    mailMicroserviceUrl: 'http://ec2-54-198-183-198.compute-1.amazonaws.com:4000/api/mail',
+export const config = {    
     mailSetting: {
         auth: {
             pass: 'Micky@1987',
@@ -77,8 +76,6 @@ export const config = {
         service: 'gmail',
         subject: 'Event registered successfully'
     },
-    mongoUrl: 'mongodb://mongo:27017/fse',
-    port: 3010,
     secret: 'keytosecure',
     tokenExpiresIn: 1440
 };

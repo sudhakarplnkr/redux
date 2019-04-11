@@ -1,5 +1,5 @@
-import { loadDashboard } from '../../actions/DashboardActions';
-import { UPDATE_DASHBOARD } from '../../constants/Actions';
+import { loadRegisteredAssociate } from '../../actions/DashboardActions';
+import { API } from '../../constants/Actions';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -15,9 +15,9 @@ describe('load dashboard actions', () => {
     it('loadDashboard action', () => {
         // Arrange
         // Act
-        loadDashboard()(store.dispatch);
+        loadRegisteredAssociate()(store.dispatch);
 
         // Assert
-        expect(store.getActions()[0].type).toEqual(UPDATE_DASHBOARD);
+        expect(store.getActions()[0].type).toEqual(API);
     });
 });
