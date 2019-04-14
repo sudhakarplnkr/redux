@@ -6,11 +6,7 @@ import { getEvents, updateEvents } from '../../actions/eventAction';
 import { IUpcomingEventsContainerProps, IEventModel, IEvent } from '../../models/Event';
 import { addFavoriteEvent, removeFavoriteEvent } from '../../actions/favoriteEventAction';
 
-class UpcomingEventsContainer extends React.Component<IUpcomingEventsContainerProps, {}> {
-    public constructor(props: IUpcomingEventsContainerProps) {
-        super(props);
-    }
-
+class UpcomingEventsContainer extends React.Component<IUpcomingEventsContainerProps> {
     public componentDidMount() {
         this.props.updateEvents([]);
         this.props.loadEvents(this.props.isMyEvents);

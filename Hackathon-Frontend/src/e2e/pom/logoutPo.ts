@@ -1,7 +1,7 @@
 import { by, element } from 'protractor';
 class LogoutPo {
     public logout = () => {
-        element(by.css('[href="/logout"]')).click();
+        element(by.css('[href="#/logout"]')).click();
     };
 }
 

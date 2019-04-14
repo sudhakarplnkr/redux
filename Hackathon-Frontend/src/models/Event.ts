@@ -1,5 +1,10 @@
 import { FileParameter } from '../utils/FileManagementClient';
 
+export interface IReportContainerProps {
+    loadEvents: () => void;
+    events: IEvent[];
+}
+
 export interface IUpcomingEventsContainerProps {
     loadEvents: (isMyEvents?: boolean) => void;
     updateEvents: (events: IEvent[]) => void;

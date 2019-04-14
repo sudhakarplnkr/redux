@@ -75,6 +75,5 @@ export const config = {
         host: 'smtp.gmail.com',
         service: 'gmail',
         subject: 'Event registered successfully'
-    },
-    port: 4000    
+    }
 };

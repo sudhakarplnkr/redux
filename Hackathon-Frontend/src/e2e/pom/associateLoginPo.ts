@@ -9,7 +9,7 @@ class AssociateLoginPo {
     };
 
     public associateLogin = (associateId: number) => {
-        browser.get('/associate-login');
+        browser.get('#/associate-login');
         this.setAssociateId(associateId);
         this.loginSubmit();
 

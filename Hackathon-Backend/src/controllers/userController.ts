@@ -28,7 +28,7 @@ export class UserController {
   }
 
   public delete(request: Request, response: Response) {
-    UserService.delete(request.params.contactId, () => {
+    UserService.delete(request.params.userId, () => {
       response.json({ message: 'Successfully deleted user!' });
     });
   }

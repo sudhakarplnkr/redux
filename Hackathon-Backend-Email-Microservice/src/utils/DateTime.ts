@@ -1,5 +1,5 @@
 export function numberToTime(time?: number): string {
-    if (time === null || time === undefined) {
+    if (!time) {
         return '';
     }
     const prefixZero = (timeStamp: number): string => {
@@ -9,5 +9,5 @@ export function numberToTime(time?: number): string {
     const session = hours < 12 ? 'AM' : 'PM';
     hours = hours % 12;
     const minutes = Math.floor((time * 60) % 60);
-    return `${prefixZero(hours === 0 ? 12 : hours)} : ${prefixZero(minutes)} ${session}`;
+    return `${prefixZero(hours)} : ${prefixZero(minutes)} ${session}`;
 }

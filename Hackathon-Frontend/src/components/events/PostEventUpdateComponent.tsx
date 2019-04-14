@@ -3,10 +3,9 @@ import { IEvent } from '../../models/Event';
 import { Link } from 'react-router-dom';
 import { numberToTime } from '../../utils/DateService';
 import SessionManagement from '../../utils/SessionManagement';
-import { IFavoriteEventComponentProps } from '../../models/FavoriteEvent';
 import { RoleTypes } from '../../models/Login';
 
-const PostEventUpdateComponent = ({ events }: { events: IEvent[]; }, { props }: { props: IFavoriteEventComponentProps }) => {
+const PostEventUpdateComponent = ({ events }: { events: IEvent[] }) => {
     const { role } = SessionManagement.currentUser();
     return (
         <div className="container">
@@ -36,7 +35,7 @@ const PostEventUpdateComponent = ({ events }: { events: IEvent[]; }, { props }: 
                             events.map((event: IEvent) => (
                                 <tr key={event._id}>
                                     <td>
-                                        <Link to={`post-event-update-detail/${event._id}`} onClick={() => props.onSelectFavorite(event)}>{event.EventTitle}</Link>
+                                        <Link to={`post-event-update-detail/${event._id}`}>{event.EventTitle}</Link>
                                     </td>
                                     <td>{event.EventDate && new Date(event.EventDate).toDateString()}</td>
                                     <td>{numberToTime(event.StartTime)}</td>

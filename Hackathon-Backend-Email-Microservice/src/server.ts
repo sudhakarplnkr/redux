@@ -1,6 +1,7 @@
 import app from './app';
-import { config } from './config/config';
 
-app.listen(config.port, () => {
-  console.log(`Express server listening on port ${config.port}`);
+const server = app.listen(process.env.PORT, () => {
+    console.log(`Express server listening on port: ${process.env.PORT}`);
 });
+
+module.exports = server;

@@ -11,7 +11,7 @@ describe('Associate upcoming event', function() {
 
     it('upcoming events successfully displayed after login', function() {
         // Then
-        expect(url.getCurrentUrl()).toBe(`${url.baseUrl}/upcoming-events`);
+        expect(url.getCurrentUrl()).toBe(`${url.baseUrl}/#/upcoming-events`);
     });
 
     it('show event detail when clicking on event title', function() {
@@ -29,12 +29,12 @@ describe('Associate upcoming event', function() {
         eventRegistrationPo.onCancel();
 
         // Then
-        expect(url.getCurrentUrl()).toBe(`${url.baseUrl}/upcoming-events`);
+        expect(url.getCurrentUrl()).toBe(`${url.baseUrl}/#/upcoming-events`);
     });
 
     it('registeration', function() {
         // When
-        browser.get('/upcoming-events');
+        browser.get('#/upcoming-events');
         upcomingEventPo.eventTitleClick();
         eventDetailPo.onRegister();
         eventRegistrationPo.transportTypeClick();
