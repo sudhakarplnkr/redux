@@ -11,4 +11,5 @@ export interface IMail {
     TransportBoardingType: string;
     PocId: number;
     Location: string;
+    AssociateId: string;
 }

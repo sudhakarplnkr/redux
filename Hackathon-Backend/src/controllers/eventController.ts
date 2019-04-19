@@ -56,7 +56,7 @@ export class EventController {
     }
 
     public delete(request: Request, response: Response) {
-        EventService.delete(request.params.contactId, () => {
+        EventService.delete(request.params.eventId, () => {
             response.json({ message: 'Successfully deleted event!' });
         });
     }

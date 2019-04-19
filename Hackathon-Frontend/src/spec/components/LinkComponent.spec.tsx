@@ -21,7 +21,7 @@ describe('LinkComponent', () => {
     it('redirect to login if user is not authenticated', () => {
         // Arrange
         const props = {
-            links: [{ name: 'Dashboard', role: RoleTypes.Associate, to: '/dashboard' }] as ILink[],
+            links: [{ name: 'Dashboard', roles: [RoleTypes.Associate], to: '/dashboard' }] as ILink[],
             isAuthenticated: false,
             role: RoleTypes.Anonymous
         };
@@ -38,8 +38,8 @@ describe('LinkComponent', () => {
         // Arrange
         const props = {
             links: [
-                { name: 'Dashboard', role: RoleTypes.Admin, to: '/dashboard' },
-                { name: 'Reports', role: RoleTypes.Admin, to: '/reports' }
+                { name: 'Dashboard', roles: [RoleTypes.Admin], to: '/dashboard' },
+                { name: 'Reports', roles: [RoleTypes.Admin], to: '/reports' }
             ] as ILink[],
             isAuthenticated: true,
             role: RoleTypes.Admin

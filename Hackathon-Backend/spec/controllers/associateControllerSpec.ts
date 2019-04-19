@@ -1,7 +1,6 @@
 import * as supertest from 'supertest';
-import { Associate } from '../../src/models/associate';
+import { Associate, AssociateModel } from '../../src/models/associate';
 import * as server from '../../src/server';
-import associateService from '../../src/services/associateService';
 import { associate, loginForToken } from '../testHelper';
 const app = supertest(server);
 
@@ -57,5 +56,20 @@ describe('associate controller tests', () => {
                         done();
                     });
             });
+    });
+
+    afterAll((done: any) => {
+        AssociateModel.findOne({ EventId: associate.EventId, AssociateId: associate.AssociateId }, (_error: any, associateToRemove: Associate) => {
+            if (associateToRemove) {
+                app.get(`/un-register/${associateToRemove._id}`)
+                    .set('Accept', 'application/json')
+                    .expect(200)
+                    .then(() => {
+                        done();
+                    });
+            } else {
+                done();
+            }
+        });
     });
 });

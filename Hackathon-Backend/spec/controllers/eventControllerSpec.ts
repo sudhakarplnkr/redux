@@ -1,5 +1,6 @@
 import * as supertest from 'supertest';
 import { Event, EventModel } from '../../src/models/event/event';
+import { User } from '../../src/models/user';
 import * as server from '../../src/server';
 import { createEvent, event, loginForToken } from '../testHelper';
 const app = supertest(server);
@@ -53,25 +54,28 @@ describe('event controller tests', () => {
     });
 
     it('delete event should delete the existing event', (done: any) => {
-        app.get('/api/event')
-            .set('Accept', 'application/json')
-            .set('access-token', user.token)
-            .then((response: any) => {
-                const testEvent = response.body.find((u: Event) => u.EventTitle === 'TestEvent');
-                app.delete(`/api/event/${testEvent._id}`)
-                    .set('Accept', 'application/json')
-                    .set('access-token', user.token)
-                    .then((result: any) => {
-                        expect(result.body.message).toBe('Successfully deleted event!');
-                        createEvent((creadedEvent: Event) => {
-                            user.eventId = creadedEvent._id;
-                            done();
-                        });
+        EventModel.findOne({ EventTitle: event.EventTitle }, (_error: any, response: User) => {
+            app.delete(`/api/event/${response._id}`)
+                .set('Accept', 'application/json')
+                .set('access-token', user.token)
+                .then((result: any) => {
+                    expect(result.body.message).toBe('Successfully deleted event!');
+                    createEvent((creadedEvent: Event) => {
+                        console.log(creadedEvent);
+                        user.eventId = creadedEvent._id;
+                        done();
                     });
-            });
+                });
+        });
     });
 
     afterAll((done: any) => {
-        EventModel.findOneAndDelete(user.eventId).then(done);
+        EventModel.findOne({ EventTitle: event.EventTitle }, (_error: any, userToRemove: User) => {
+            EventModel.findByIdAndDelete(userToRemove._id, (err: any, res: any) => {
+                done();
+            });
+        }).catch(() => {
+            done();
+        });
     });
 });

@@ -13,5 +13,6 @@ export interface IAppState {
 export interface ILink {
     name: string;
     to: string;
-    role: RoleTypes;
+    roles: RoleTypes[];
+    submenu?: ILink[];
 }

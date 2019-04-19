@@ -29,7 +29,7 @@ const SingleEventComponent = (props: ISingleEventProps) => {
         <div className="container">
             <form className="form-horizontal" onSubmit={() => props.submitEvent()}>
                 <h2>
-                    <small>Create Registration</small>
+                    <small>Create Event</small>
                 </h2>
                 <hr />
                 <div className="form-group">
@@ -37,9 +37,15 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         Beneficiary Name
                     </label>
                     <div className="col-md-5">
-                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.BenificiaryName} onChange={(event) => props.updateEventDetails({ BenificiaryName: event.target.value })} id="beneficiaryName" list="beneficiaryNameList" required={true} />
+                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.BenificiaryName} onChange={event => props.updateEventDetails({ BenificiaryName: event.target.value })} id="beneficiaryName" list="beneficiaryNameList" required={true} />
                         <datalist className="col-md-5" id="beneficiaryNameList">
-                            {props.eventDefaultValues && props.eventDefaultValues.beneficiary && props.eventDefaultValues.beneficiary.map((single, key) => <option key={key} value={single.BeneficiaryName}>{single.BeneficiaryName}</option>)}
+                            {props.eventDefaultValues &&
+                                props.eventDefaultValues.beneficiary &&
+                                props.eventDefaultValues.beneficiary.map((single, key) => (
+                                    <option key={key} value={single.BeneficiaryName}>
+                                        {single.BeneficiaryName}
+                                    </option>
+                                ))}
                         </datalist>
                     </div>
                 </div>
@@ -48,9 +54,15 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         Council Name
                     </label>
                     <div className="col-md-5">
-                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.CouncilName} onChange={(event) => props.updateEventDetails({ CouncilName: event.target.value })} id="councilName" list="CouncilNameNameList" required={true} />
+                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.CouncilName} onChange={event => props.updateEventDetails({ CouncilName: event.target.value })} id="councilName" list="CouncilNameNameList" required={true} />
                         <datalist className="col-md-5" id="CouncilNameNameList">
-                            {props.eventDefaultValues && props.eventDefaultValues.council && props.eventDefaultValues.council.map((single, key) => <option key={key} value={single.CouncilName}>{single.CouncilName}</option>)}
+                            {props.eventDefaultValues &&
+                                props.eventDefaultValues.council &&
+                                props.eventDefaultValues.council.map((single, key) => (
+                                    <option key={key} value={single.CouncilName}>
+                                        {single.CouncilName}
+                                    </option>
+                                ))}
                         </datalist>
                     </div>
                 </div>
@@ -59,9 +71,15 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         Project
                     </label>
                     <div className="col-md-5">
-                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.Project} onChange={(event) => props.updateEventDetails({ Project: event.target.value })} id="project" list="projectNameList" required={true} />
+                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.Project} onChange={event => props.updateEventDetails({ Project: event.target.value })} id="project" list="projectNameList" required={true} />
                         <datalist className="col-md-5" id="projectNameList">
-                            {props.eventDefaultValues && props.eventDefaultValues.project && props.eventDefaultValues.project.map((single, key) => <option key={key} value={single.ProjectName}>{single.ProjectName}</option>)}
+                            {props.eventDefaultValues &&
+                                props.eventDefaultValues.project &&
+                                props.eventDefaultValues.project.map((single, key) => (
+                                    <option key={key} value={single.ProjectName}>
+                                        {single.ProjectName}
+                                    </option>
+                                ))}
                         </datalist>
                     </div>
                 </div>
@@ -70,9 +88,15 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         Event Category
                     </label>
                     <div className="col-md-5">
-                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.EventCategory} onChange={(event) => props.updateEventDetails({ EventCategory: event.target.value })} id="eventCategory" list="eventCategoryList" required={true} />
+                        <input className="form-control" defaultValue={props.favoriteEvent && props.favoriteEvent.EventCategory} onChange={event => props.updateEventDetails({ EventCategory: event.target.value })} id="eventCategory" list="eventCategoryList" required={true} />
                         <datalist className="col-md-5" id="eventCategoryList">
-                            {props.eventDefaultValues && props.eventDefaultValues.eventCategory && props.eventDefaultValues.eventCategory.map((single, key) => <option key={key} value={single.EventCategoryName}>{single.EventCategoryName}</option>)}
+                            {props.eventDefaultValues &&
+                                props.eventDefaultValues.eventCategory &&
+                                props.eventDefaultValues.eventCategory.map((single, key) => (
+                                    <option key={key} value={single.EventCategoryName}>
+                                        {single.EventCategoryName}
+                                    </option>
+                                ))}
                         </datalist>
                     </div>
                 </div>
@@ -145,7 +169,7 @@ const SingleEventComponent = (props: ISingleEventProps) => {
                         Transport Boarding Point Type
                     </label>
                     <div className="col-md-5">
-                        <select className="form-control" id="transportBoardingPointType" onChange={(event: React.ChangeEvent<HTMLSelectElement>) => props.updateEventDetails({ TransportBoardingType: event.target.value })} >
+                        <select className="form-control" id="transportBoardingPointType" onChange={(event: React.ChangeEvent<HTMLSelectElement>) => props.updateEventDetails({ TransportBoardingType: event.target.value })}>
                             {defaultOption}
                             {props.eventDefaultValues && props.eventDefaultValues.transportBoardingType && props.eventDefaultValues.transportBoardingType.map((single, key) => <option key={key}>{single.TransportBoardingType}</option>)}
                         </select>

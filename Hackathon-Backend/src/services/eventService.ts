@@ -63,7 +63,7 @@ class EventService {
     }
 
     public delete(eventId: string, callback: any): void {
-        EventModel.findOneAndDelete(eventId).then(callback);
+        EventModel.findByIdAndDelete(eventId, callback);
     }
 
     public addBeneficiary(beneficiaryName: Beneficiary, callback: any): void {

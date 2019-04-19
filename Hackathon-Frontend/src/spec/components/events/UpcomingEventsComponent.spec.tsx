@@ -39,7 +39,7 @@ describe('UpcomingEventsComponent', () => {
         const component = shallow(<UpcomingEventsComponent {...props} />);
 
         // Assert
-        expect(component.find('div>h2>small').text()).toBe('Upcoming Events');
+        expect(component.find('div>h2>small').text()).toBe('Events');
     });
 
     it('check upcoming event data', () => {

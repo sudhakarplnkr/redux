@@ -17,7 +17,7 @@ const PostEventUpdateComponent = ({ events }: { events: IEvent[] }) => {
                 <table className="table table-hover text-center">
                     <thead>
                         <tr>
-                            <th className="text-center">Tittle</th>
+                            <th className="text-center">Title</th>
                             <th className="text-center">Date</th>
                             <th className="text-center">Start Time</th>
                             <th className="text-center">End Time</th>

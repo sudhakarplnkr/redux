@@ -4,6 +4,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { onLogout } from '../actions/AppActions';
 import Header from '../components/HeaderComponent';
+import Footer from '../components/FooterComponent';
 import LinksComponent from '../components/LinkComponent';
 import { PrivateRoute } from '../components/privateRoute/PrivateRoute';
 import { IAppProps, ILink } from '../models/App';
@@ -29,17 +30,16 @@ import RegistrationContainer from './registrations/RegistrationContainer';
 class AppComponent extends React.Component<IAppProps, {}> {
     public render() {
         const menuLinks: ILink[] = [
-            { name: 'Dashboard', to: '/', role: RoleTypes.Admin },
-            { name: 'Upcoming Events', to: '/upcoming-events', role: RoleTypes.Admin },
-            { name: 'Upcoming Events', to: '/upcoming-events', role: RoleTypes.Associate },
-            { name: 'My Events', to: '/my-events', role: RoleTypes.Admin },
-            { name: 'My Events', to: '/my-events', role: RoleTypes.Associate },
-            { name: 'Event Upload', to: '/event-upload', role: RoleTypes.Admin },
-            { name: 'Favorite Events', to: '/fovorite-events', role: RoleTypes.Admin },
-            { name: 'Report', to: '/report', role: RoleTypes.Admin },
-            { name: 'Configuration', to: '/configuration', role: RoleTypes.Admin },
-            { name: 'Post Event Update', to: '/post-event-update', role: RoleTypes.Admin },
-            { name: 'Logout', to: '/logout', role: RoleTypes.Anonymous }
+            { name: 'Dashboard', to: '/', roles: [RoleTypes.Admin] },
+            {
+                name: 'Events',
+                to: '',
+                submenu: [{ name: 'Upcoming Events', to: '/upcoming-events', roles: [RoleTypes.Admin, RoleTypes.Associate] }, { name: 'My Events', to: '/my-events', roles: [RoleTypes.Admin, RoleTypes.Associate] }, { name: 'Event Upload', to: '/event-upload', roles: [RoleTypes.Admin] }, { name: 'Favorite Events', to: '/fovorite-events', roles: [RoleTypes.Admin] }, { name: 'Post Event Update', to: '/post-event-update', roles: [RoleTypes.Admin] }],
+                roles: [RoleTypes.Admin, RoleTypes.Associate]
+            },
+            { name: 'Report', to: '/report', roles: [RoleTypes.Admin] },
+            { name: 'Configuration', to: '/configuration', roles: [RoleTypes.Admin] },
+            { name: 'Logout', to: '/logout', roles: [RoleTypes.Anonymous] }
         ];
 
         return (
@@ -68,7 +68,7 @@ class AppComponent extends React.Component<IAppProps, {}> {
                         <Route path="/access-denied" component={AccessDeniedComponent} />
                     </React.Fragment>
                 </HashRouter>
-                {/* <Footer /> */}
+                <Footer />
             </React.Fragment>
         );
     }

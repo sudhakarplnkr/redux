@@ -5,7 +5,7 @@ import { IDashboardProps } from '../models/Dashboard';
 const DashboardComponent = (props: IDashboardProps) => {
     return (
         <div className="container">
-            <div className="row col-sm-12 col-md-12 col-lg-12">
+            <div className="col-sm-12 col-md-12 col-lg-12">
                 <div className="col-sm-6 col-md-6 col-lg-6">
                     <h2>
                         <small>Registered Associates for Events</small>

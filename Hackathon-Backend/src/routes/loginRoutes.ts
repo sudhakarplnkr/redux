@@ -11,5 +11,6 @@ export class LoginRoutes {
     public routes(application: Router): void {
         application.route('/login').post(this.loginController.login);
         application.route('/associate-login').post(this.loginController.associateLogin);
+        application.route('/heart-beat').get(this.loginController.heartBeat);
     }
 }

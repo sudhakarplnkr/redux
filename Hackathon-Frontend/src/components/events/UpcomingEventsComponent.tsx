@@ -10,14 +10,14 @@ const UpcomingEventsComponent = ({ events, onRemoveFavorite, onAddFavorite, show
     return (
         <div className="container">
             <h2>
-                <small>Upcoming Events</small>
+                <small>Events</small>
             </h2>
             <hr />
             <div className="table-responsive">
                 <table className="table table-hover text-center">
                     <thead>
                         <tr>
-                            <th className="text-center">Tittle</th>
+                            <th className="text-center">Title</th>
                             <th className="text-center">Date</th>
                             <th className="text-center">Start Time</th>
                             <th className="text-center">End Time</th>

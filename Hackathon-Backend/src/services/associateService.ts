@@ -1,6 +1,6 @@
 import { Message } from '../constants/message';
 import { Associate, AssociateModel } from '../models/associate';
-import { sendMail } from './mail';
+import { sendMail } from './mailService';
 
 class AssociateService {
     public get(associateId: string, callback: any): void {
@@ -22,8 +22,8 @@ class AssociateService {
                     if (!response) {
                         associate.EventId = eventId;
                         if (AssociateModel.isModelValid(associate)) {
-                            AssociateModel.create({ ...associate, EventId: eventId }, () => {
-                                resolve(sendMail(associate.AssociateId, eventId));
+                            AssociateModel.create({ ...associate, EventId: eventId }).then((newAssociate: Associate) => {
+                                resolve(sendMail(associate.AssociateId, eventId, newAssociate._id));
                             });
                             return;
                         }
@@ -46,7 +46,7 @@ class AssociateService {
     }
 
     public delete(associateId: string, callback: any): void {
-        AssociateModel.findOneAndDelete(associateId).then(callback);
+        AssociateModel.findByIdAndDelete(associateId, callback);
     }
 }
 
