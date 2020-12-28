@@ -54,7 +54,7 @@ describe('event controller tests', () => {
     });
 
     it('delete event should delete the existing event', (done: any) => {
-        EventModel.findOne({ EventTitle: event.EventTitle }, (_error: any, response: User) => {
+        EventModel.find({ EventTitle: event.EventTitle }, (_error: any, response: User) => {
             app.delete(`/api/event/${response._id}`)
                 .set('Accept', 'application/json')
                 .set('access-token', user.token)
@@ -70,7 +70,7 @@ describe('event controller tests', () => {
     });
 
     afterAll((done: any) => {
-        EventModel.findOne({ EventTitle: event.EventTitle }, (_error: any, userToRemove: User) => {
+        EventModel.find({ EventTitle: event.EventTitle }, (_error: any, userToRemove: User) => {
             EventModel.findByIdAndDelete(userToRemove._id, (err: any, res: any) => {
                 done();
             });

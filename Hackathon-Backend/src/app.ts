@@ -2,7 +2,7 @@ import * as bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import * as express from 'express';
 import * as mongoose from 'mongoose';
-import { BaseRoutes } from './routes/BaseRoutes';
+import { BaseRoutes } from './routes/baseRoutes';
 import SeedService from './utils/Seed';
 dotenv.config();
 

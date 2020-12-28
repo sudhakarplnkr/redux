@@ -9,7 +9,7 @@ class SeedService {
     }
 
     private user(): void {
-        UserModel.findOne({ Username: 'sudhakar' }).then((user: User) => {
+        UserModel.find({ Username: 'sudhakar' }).then((user: User) => {
             if (!user) {
                 UserService.add(
                     {

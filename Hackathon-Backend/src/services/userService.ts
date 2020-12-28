@@ -26,7 +26,7 @@ class UserService {
   }
 
   private addUser(user: User, callback: any) {
-    UserModel.findOne({ Username: user.Username }).then(
+    UserModel.find({ Username: user.Username }).then(
       (availableUser: User) => {
         if (!availableUser) {
           UserModel.create(user, (_error: any, newUser: User) => {

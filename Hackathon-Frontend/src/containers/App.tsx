@@ -6,7 +6,7 @@ import { onLogout } from '../actions/AppActions';
 import Header from '../components/HeaderComponent';
 import Footer from '../components/FooterComponent';
 import LinksComponent from '../components/LinkComponent';
-import { PrivateRoute } from '../components/privateRoute/PrivateRoute';
+import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
 import { IAppProps, ILink } from '../models/App';
 import SessionManagement from '../utils/SessionManagement';
 import ConfigurationContainer from './ConfigurationContainer';

@@ -17,7 +17,7 @@ class AssociateService {
 
     public bulkAdd(eventId: string, associates: Associate[], callback: any): void {
         const promise = associates.map((associate: Associate) =>
-            AssociateModel.findOne({ AssociateId: associate.AssociateId, EventId: eventId }).then((response: Associate) => {
+            AssociateModel.find({ AssociateId: associate.AssociateId, EventId: eventId }).then((response: Associate) => {
                 return new Promise((resolve: any) => {
                     if (!response) {
                         associate.EventId = eventId;

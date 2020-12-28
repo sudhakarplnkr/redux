@@ -7,7 +7,7 @@ import { ProjectModel } from '../models/event/project';
 
 export function addEvent(event: Event): any {
     return new Promise((resolve: any) => {
-        EventModel.findOne({ EventTitle: event.EventTitle, Location: event.Location }).then((reposnse: Event) => {
+        EventModel.find({ EventTitle: event.EventTitle, Location: event.Location }).then((reposnse: Event) => {
             if (!reposnse) {
                 event.StartTime = 24 * event.StartTime;
                 event.EndTime = 24 * event.EndTime;
@@ -28,25 +28,25 @@ export function addEvent(event: Event): any {
 }
 
 export function addDetailsIfNotExists(event: Event): void {
-    BeneficiaryModel.findOne(
+    BeneficiaryModel.find(
         { BeneficiaryName: event.BenificiaryName }).then((reposnse: any) => {
             if (!reposnse) {
                 BeneficiaryModel.create({ BeneficiaryName: event.BenificiaryName }).then(reposnse);
             }
         });
-    CouncilModel.findOne(
+    CouncilModel.find(
         { CouncilName: event.CouncilName }).then((reposnse: any) => {
             if (!reposnse) {
                 CouncilModel.create({ CouncilName: event.CouncilName }).then(reposnse);
             }
         });
-    ProjectModel.findOne(
+    ProjectModel.find(
         { ProjectName: event.Project }).then((reposnse: any) => {
             if (!reposnse) {
                 ProjectModel.create({ ProjectName: event.Project }).then(reposnse);
             }
         });
-    EventCategoryModel.findOne(
+    EventCategoryModel.find(
         { EventCategoryName: event.EventCategory }).then((reposnse: any) => {
             if (!reposnse) {
                 EventCategoryModel.create({ EventCategoryName: event.EventCategory }).then(reposnse);

@@ -8,6 +8,9 @@ services:
       - "3010:3010"
     links:
       - mongo
+    environment:
+    - PORT=3010
+    - MONGO_DB_CONNECTION=mongodb://mongo:27017/fse
   mongo:
     container_name: mongo
     image: mongo

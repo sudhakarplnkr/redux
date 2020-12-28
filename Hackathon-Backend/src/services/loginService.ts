@@ -2,7 +2,7 @@ import { User, UserModel } from '../models/user';
 
 class LoginService {
     public login(username: string, password: string, callback: any): void {
-        UserModel.findOne({ Username: username }).then((user: User) => {
+        UserModel.find({ Username: username }).then((user: User) => {
             if (user && UserModel.comparePassword(password, user.Password)) {
                 callback(null, user);
                 return;

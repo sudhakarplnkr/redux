@@ -59,7 +59,7 @@ describe('associate controller tests', () => {
     });
 
     afterAll((done: any) => {
-        AssociateModel.findOne({ EventId: associate.EventId, AssociateId: associate.AssociateId }, (_error: any, associateToRemove: Associate) => {
+        AssociateModel.find({ EventId: associate.EventId, AssociateId: associate.AssociateId }, (_error: any, associateToRemove: Associate) => {
             if (associateToRemove) {
                 app.get(`/un-register/${associateToRemove._id}`)
                     .set('Accept', 'application/json')

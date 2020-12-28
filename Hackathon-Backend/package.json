@@ -55,6 +55,7 @@
         "supertest": "^4.0.2",
         "tsc": "^1.20150623.0",
         "typegoose": "^5.5.0",
+        "@typegoose/typegoose": "^5.5.0",
         "typescript-string-operations": "^1.3.1",
         "xlsx": "^0.14.1"
     },
